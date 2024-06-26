@@ -13,7 +13,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import roc_auc_score, roc_curve, auc
 import tensorflow as tf
 import tensorflow_text as text
-import tensorflow_hub as hub
+# import tensorflow_hub as hub
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Embedding, LSTM, Dense, Dropout
 from keras.layers import Embedding, Conv1D, MaxPooling1D, Flatten, Dense, Dropout
@@ -28,11 +28,11 @@ import numpy as np
 import joblib
 
 # Charger le modèle CNN
-model_rnn = load_model('/Models/rnn_model2.h5')
+model_rnn = load_model('./rnn_model3.h5')
 
 # Définir les paramètres de tokenisation
 maxlen = 150
-tokenizer = joblib.load('/Models/rnn_tokenizer.pickle')
+tokenizer = joblib.load('./rnn3_tokenizer.pickle')
 
 # Fonction pour prédire le sentiment
 def predict_sentiment(tweet):
