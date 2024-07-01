@@ -32,7 +32,7 @@ model_rnn = load_model('./rnn_model3.h5')
 
 # Définir les paramètres de tokenisation
 maxlen = 150
-tokenizer = joblib.load('./tokenizer_1.pickle')
+tokenizer = joblib.load('./rnn3_tokenizer.pickle')
 
 # Fonction pour prédire le sentiment
 def predict_sentiment(tweet):
