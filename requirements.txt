@@ -1,6 +1,6 @@
 pandas==2.0.3
 scikit-learn==1.2.2
-tensorflow==2.13.1
+tensorflow==2.16.2
 tensorflow-text==2.13.0rc0
 keras==3.4.1
 streamlit==1.36.0
