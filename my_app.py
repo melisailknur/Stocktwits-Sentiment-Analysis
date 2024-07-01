@@ -28,11 +28,11 @@ import numpy as np
 import joblib
 
 # Charger le modèle CNN
-model_rnn = load_model('./rnn_model3.h5')
+model_rnn = load_model('./rnn_model_2.keras')
 
 # Définir les paramètres de tokenisation
 maxlen = 150
-tokenizer = joblib.load('./rnn3_tokenizer.pickle')
+tokenizer = joblib.load('./tokenizer_1.pickle')
 
 # Fonction pour prédire le sentiment
 def predict_sentiment(tweet):
