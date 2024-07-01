@@ -28,7 +28,7 @@ import numpy as np
 import joblib
 
 # Charger le modèle CNN
-model_rnn = load_model('./rnn_model_3_2.h5')
+model_rnn = load_model('./rnn_model_3_1.h5')
 
 # Définir les paramètres de tokenisation
 maxlen = 150
