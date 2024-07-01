@@ -14,7 +14,7 @@ from sklearn.metrics import roc_auc_score, roc_curve, auc
 import tensorflow as tf
 import tensorflow_text as text
 # import tensorflow_hub as hub
-from tensorflow.keras.models import Sequential, load_model
+#from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Embedding, LSTM, Dense, Dropout
 from keras.layers import Embedding, Conv1D, MaxPooling1D, Flatten, Dense, Dropout
 from tensorflow.keras.preprocessing.text import Tokenizer
