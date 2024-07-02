@@ -87,7 +87,7 @@ def preprocess_text(text, custom_stopwords):
     return ' '.join(lemmatized_words)
 
 # Charger le modèle RNN
-model_rnn = load_model('./rnn_model_3_1.h5')
+model_rnn = load_model('./rnn_model3.h5')
 
 # Définir les paramètres de tokenisation
 maxlen = 150
