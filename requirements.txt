@@ -7,4 +7,3 @@ streamlit==1.36.0
 joblib==1.4.2
 numpy==1.24.3
 nltk
-emoji
