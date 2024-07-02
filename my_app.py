@@ -57,9 +57,9 @@ custom_stopwords = set(['i', 'me', 'my', 'myself', 'we', 'our', 'ours',
  'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing',
  'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of', 'at', 'by', 'for',
 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'to',
-'from', 'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once',
+'from', 'in', 'out', 'on', 'off', 'again', 'further', 'then', 'once',
 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most',
-'other', 'some', 'such', 'only', 'own', 'same', 'so', 'than', 'too', 'very',
+'other', 'some', 'such', 'only', 'own', 'same', 'so', 'than',
 's', 't', 'can', 'will', 'just', 'should', "should've", 'now', 'd', 'll', 'm', 'o', 're', 've', 'y'])
 
 # Function to add spaces around emojis
@@ -71,6 +71,7 @@ def preprocess_text(text, custom_stopwords):
     text = text.lower()
     text = re.sub(r'http\S+|www\S+|https\S+', '', text, flags=re.MULTILINE)
     text = re.sub(r'@\w+', '', text)
+    text = re.sub(r'\b\w{1,2}\b', '', text)
     text = re.sub(r'#', '', text)
     text = re.sub(r'\$\w+', '', text)
     text = re.sub(r'rt\s+', '', text)
@@ -96,20 +97,20 @@ def predict_sentiment(tweet):
     return 'Bullish' if pred_prob > 0.5 else 'Bearish'
 
 # Interface Streamlit
-st.title('Sentiment Analysis for Stock Tweets')
-st.write('Enter a tweet with a stock tag like §AAPL and click on Predict to see the sentiment.')
+st.title('Analyse des sentiments des messages des réseaux sociaux')
+st.write('Ecrivez un message avec un tag et un ticker, par exemple "§AAPL" et cliquez sur le bouton prédire pour voir le sentiment.')
 
 # Entrée de l'utilisateur
 tweet = st.text_area('Entrez votre message :')
 
 # Bouton de prédiction
-if st.button('Predict'):
+if st.button('Predire'):
     if tweet:
         if len(tweet) > 300:
             st.write('Nombre de caractère maximal dépassé.')
         else:
             tweet = preprocess_text(tweet, custom_stopwords)
             sentiment = predict_sentiment(tweet)
-            st.write(f'The predicted sentiment is: **{sentiment}**')
+            st.write(f'Le sentiment prédit est : **{sentiment}**')
     else:
-        st.write('Entre un message à prédire.')
+        st.write('Entrez un message à prédire.')
