@@ -27,6 +27,7 @@ import tensorflow_text as text
 #from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Embedding, LSTM, Dense, Dropout
 from keras.layers import Embedding, Conv1D, MaxPooling1D, Flatten, Dense, Dropout
+from tensorflow.keras.layers import Embedding, SpatialDropout1D, Bidirectional, LSTM, Dropout, BatchNormalization, Dense
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
