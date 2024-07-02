@@ -83,7 +83,7 @@ def preprocess_text(text, custom_stopwords):
     return ' '.join(lemmatized_words)
 
 # Charger le modèle RNN
-model_rnn = load_model('./rnn_model.h5')
+rnn_model = load_model('./rnn_model.h5')
 
 # Définir les paramètres de tokenisation
 tokenizer = joblib.load('./tokenizer.pickle')
