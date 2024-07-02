@@ -71,7 +71,6 @@ def preprocess_text(text, custom_stopwords):
     text = text.lower()
     text = re.sub(r'http\S+|www\S+|https\S+', '', text, flags=re.MULTILINE)
     text = re.sub(r'@\w+', '', text)
-    text = re.sub(r'\b\w{1,2}\b', '', text)
     text = re.sub(r'#', '', text)
     text = re.sub(r'\$\w+', '', text)
     text = re.sub(r'rt\s+', '', text)
