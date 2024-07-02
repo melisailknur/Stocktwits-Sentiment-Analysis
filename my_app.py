@@ -9,13 +9,11 @@ Original file is located at
 
 import pandas as pd
 import re
-from nltk.corpus import stopwords
 import nltk
 import emoji
 from nltk.corpus import wordnet
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-from collections import Counter
 
 nltk.download('stopwords')
 nltk.download('punkt')
