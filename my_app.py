@@ -99,7 +99,7 @@ def predict_sentiment(tweet):
     tweet_pad = pad_sequences(tweet_seq, maxlen=maxlen)
     # Prédire le sentiment
     pred_prob = model_rnn.predict(tweet_pad).ravel()[0]
-    return 'Bullish' if pred_prob > 0.6 else 'Bearish'
+    return 'Bullish' if pred_prob > 0.5 else 'Bearish'
 
 # Interface Streamlit
 st.title('Sentiment Analysis for Stock Tweets')
