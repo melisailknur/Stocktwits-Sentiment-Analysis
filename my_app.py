@@ -20,11 +20,7 @@ nltk.download('averaged_perceptron_tagger')
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, roc_auc_score, confusion_matrix
-from sklearn.ensemble import RandomForestClassifier
 import joblib
 import keras
 import tensorflow
