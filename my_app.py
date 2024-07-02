@@ -10,10 +10,10 @@ Original file is located at
 import pandas as pd
 import re
 import nltk
-import emoji
 from nltk.corpus import wordnet
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+#import emoji
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
@@ -66,8 +66,8 @@ custom_stopwords = set(['i', 'me', 'my', 'myself', 'we', 'our', 'ours',
 's', 't', 'can', 'will', 'just', 'should', "should've", 'now', 'd', 'll', 'm', 'o', 're', 've', 'y'])
 
 # Function to add spaces around emojis
-def extract_emojis(s):
-    return ''.join((' ' + c + ' ') if c in emoji.EMOJI_DATA else c for c in s)
+#def extract_emojis(s):
+   # return ''.join((' ' + c + ' ') if c in emoji.EMOJI_DATA else c for c in s)
 
 # Pre-processing function
 def preprocess_text(text, custom_stopwords):
@@ -77,8 +77,8 @@ def preprocess_text(text, custom_stopwords):
     text = re.sub(r'#', '', text)
     text = re.sub(r'\$\w+', '', text)
     text = re.sub(r'rt\s+', '', text)
-    text = extract_emojis(text)
-    text = emoji.demojize(text)
+   #text = extract_emojis(text)
+   #text = emoji.demojize(text)
     text = re.sub(r'[^A-Za-z\s]', '', text)
     words = word_tokenize(text)
     pos_tags = nltk.pos_tag(words)
