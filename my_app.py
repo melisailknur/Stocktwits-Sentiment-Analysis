@@ -18,24 +18,22 @@ nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.metrics import roc_auc_score, roc_curve, auc
-import tensorflow as tf
-import tensorflow_text as text
-# import tensorflow_hub as hub
-#from tensorflow.keras.models import Sequential, load_model
-from tensorflow.keras.layers import Embedding, LSTM, Dense, Dropout
-from keras.layers import Embedding, Conv1D, MaxPooling1D, Flatten, Dense, Dropout
-from tensorflow.keras.layers import Embedding, SpatialDropout1D, Bidirectional, LSTM, Dropout, BatchNormalization, Dense
+from sklearn.metrics import classification_report, roc_auc_score, confusion_matrix
+from sklearn.ensemble import RandomForestClassifier
+import joblib
+import keras
+import tensorflow
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Embedding, LSTM, Dense, Dropout, Bidirectional
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 import streamlit as st
-from keras.preprocessing.text import Tokenizer
-from keras.preprocessing.sequence import pad_sequences
-from keras.models import load_model
-import numpy as np
 import joblib
 
 def get_wordnet_pos(tag):
@@ -87,19 +85,16 @@ def preprocess_text(text, custom_stopwords):
     return ' '.join(lemmatized_words)
 
 # Charger le modèle RNN
-model_rnn = load_model('./rnn_model_3_1.h5')
+model_rnn = load_model('./rnn_model.h5')
 
 # Définir les paramètres de tokenisation
-maxlen = 150
-tokenizer = joblib.load('./tokenizer_1.pickle')
+tokenizer = joblib.load('./tokenizer.pickle')
 
 # Fonction pour prédire le sentiment
 def predict_sentiment(tweet):
-    # Prétraiter le tweet
     tweet_seq = tokenizer.texts_to_sequences([tweet])
-    tweet_pad = pad_sequences(tweet_seq, maxlen=maxlen)
-    # Prédire le sentiment
-    pred_prob = model_rnn.predict(tweet_pad).ravel()[0]
+    tweet_pad = pad_sequences(tweet_seq, maxlen=150)
+    pred_prob = rnn_model.predict(tweet_pad).ravel()[0]
     return 'Bullish' if pred_prob > 0.5 else 'Bearish'
 
 # Interface Streamlit
@@ -107,16 +102,16 @@ st.title('Sentiment Analysis for Stock Tweets')
 st.write('Enter a tweet with a stock tag like §AAPL and click on Predict to see the sentiment.')
 
 # Entrée de l'utilisateur
-tweet = st.text_area('Enter tweet:')
+tweet = st.text_area('Entrez votre message :')
 
 # Bouton de prédiction
 if st.button('Predict'):
     if tweet:
         if len(tweet) > 300:
-            st.write('Please enter a shorter tweet.')
+            st.write('Nombre de caractère maximal dépassé.')
         else:
             tweet = preprocess_text(tweet, custom_stopwords)
             sentiment = predict_sentiment(tweet)
             st.write(f'The predicted sentiment is: **{sentiment}**')
     else:
-        st.write('Please enter a tweet to predict.')
+        st.write('Entre un message à prédire.')
